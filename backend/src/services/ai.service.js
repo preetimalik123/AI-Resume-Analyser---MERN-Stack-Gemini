@@ -183,8 +183,12 @@ ${jobDescription}
     return validatedReport;
 }
 async function generatePdfFromHtml(htmlContent) {
+
+    const chromePath = await puppeteer.executablePath();
+    console.log("Chrome Path:", chromePath);
+
     const browser = await puppeteer.launch({
-        executablePath: puppeteer.executablePath(),
+        executablePath: await puppeteer.executablePath(),
         headless: true,
         args: [
             "--no-sandbox",
